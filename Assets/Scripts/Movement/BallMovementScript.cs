@@ -41,7 +41,7 @@ public class BallMovementScript : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        _rigidbody.AddForce(new Vector3(_ballForce, 0, 0));
+        _rigidbody.AddForce(new Vector3(70, _ballForce, 0));
     }
 
     // Update is called once per frame
