@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+
+        
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             else if (direction.z < 0)
                 direction = new Vector3(0, 0, -1);
             else direction = new Vector3(0, 0, 0);
-            
+
             //Sets the paddle's velocity to move toward that direction
             _rigidBody.velocity = direction * _paddleSpeed * Time.fixedDeltaTime;
         }
