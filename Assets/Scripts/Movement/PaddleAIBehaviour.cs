@@ -47,10 +47,17 @@ public class PaddleAIBehaviour : MonoBehaviour
 
         if (distance < _defendRange)
         {
+            Vector3 direction = _gameBall.transform.position - transform.position;
+            if (direction.z > -.1f && direction.z < 0.1f)
+            {
+                _rigidBody.velocity = new Vector3(0, 0, 0);
+                return;
+            }
+
             if (_gameBall.transform.position.z > transform.position.z)
-                _rigidBody.AddForce(new Vector3(0, 0, 1) * _paddleSpeed * Time.fixedDeltaTime);
+                _rigidBody.velocity = new Vector3(0, 0, 1) * _paddleSpeed * Time.fixedDeltaTime;
             else if (_gameBall.transform.position.z < transform.position.z)
-                _rigidBody.AddForce(new Vector3(0, 0, -1) * _paddleSpeed * Time.fixedDeltaTime);
+                _rigidBody.velocity = new Vector3(0, 0, -1) * _paddleSpeed * Time.fixedDeltaTime;
         }
         else _rigidBody.velocity = new Vector3(0, 0, 0);
     }

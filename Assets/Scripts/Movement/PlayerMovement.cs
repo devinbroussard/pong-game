@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
             //Calculates the direction of the raycast from the paddle
             Vector3 direction = (hitInfo.point - transform.position).normalized;
 
+            if (direction.z > -.1f && direction.z < 0.1f)
+            {
+                _rigidBody.velocity = new Vector3(0, 0, 0);
+                return;
+            }
+
             //Changes the z direction either 1 or -1 depending on the direction
             if (direction.z > 0)
                 direction = new Vector3(0, 0, 1);

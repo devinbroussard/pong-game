@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.SceneManagement;
 
 public class GameBallBehaviour : MonoBehaviour
 {
@@ -47,7 +48,9 @@ public class GameBallBehaviour : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        _rigidbody.AddForce(new Vector3(70, _ballForce, 0));
+        float random = Random.Range(1, 70);
+
+        _rigidbody.AddForce(new Vector3(_ballForce, 0, random));
     }
 
     // Update is called once per frame
