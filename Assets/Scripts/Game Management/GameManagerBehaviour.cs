@@ -13,6 +13,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
     private void Start()
     {
+        //Initializes saved keys
         if (!PlayerPrefs.HasKey("Red Score"))
             PlayerPrefs.SetInt("Red Score", 0);
         if (!PlayerPrefs.HasKey("Blue Score"))
@@ -22,6 +23,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        //If either red or blue side scored a point, adds a point to their score and resets the scene
         if (_gameBall.RedPoint)
         {
             int redScore = PlayerPrefs.GetInt("Red Score");

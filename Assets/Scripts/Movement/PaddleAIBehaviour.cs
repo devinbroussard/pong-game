@@ -41,12 +41,18 @@ public class PaddleAIBehaviour : MonoBehaviour
         _gameBallRigidBody = _gameBall.GetComponent<Rigidbody>();
     }
 
+    /// <summary>
+    /// Makes the paddle go towards the ball
+    /// </summary>
     private void FixedUpdate()
     {
+        //Calculates the distance between the paddle and ball
         float distance = (_gameBall.transform.position - transform.position).magnitude;
 
+        //If the ball is in the paddle's defence range, then move towards its Z position
         if (distance < _defendRange)
         {
+            //Calculates the direction to the ball from the paddle
             Vector3 direction = _gameBall.transform.position - transform.position;
             if (direction.z > -.1f && direction.z < 0.1f)
             {
@@ -54,6 +60,7 @@ public class PaddleAIBehaviour : MonoBehaviour
                 return;
             }
 
+            //Moves the paddle either left or right depending on the direction vector's Z value
             if (_gameBall.transform.position.z > transform.position.z)
                 _rigidBody.velocity = new Vector3(0, 0, 1) * _paddleSpeed * Time.fixedDeltaTime;
             else if (_gameBall.transform.position.z < transform.position.z)

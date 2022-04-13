@@ -21,9 +21,10 @@ public class CameraManagerBehaviour : MonoBehaviour
     /// </summary>
     private Vector3 _startPos;
 
+    /// <summary>
+    /// The ratio stored in a float
+    /// </summary>
     private float _refRatio;
-
-    private Vector3 _zoomScale = Vector3.one;
 
     private void Awake()
     {
@@ -42,12 +43,7 @@ public class CameraManagerBehaviour : MonoBehaviour
         float ratio = _refRatio / _mainCamera.aspect;
         ratio = (float)Math.Round(ratio, 4);
 
-
-        Vector3 scaledPosition = Vector3.Scale(_startPos * ratio, _zoomScale);
-
-        
-
-
+        //Changes the camera's position based on the aspect ratio of their device
         if (_mainCamera.aspect > 1)
         {
             transform.position = _startPos * ratio;

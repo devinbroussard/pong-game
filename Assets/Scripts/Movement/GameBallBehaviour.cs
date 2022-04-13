@@ -32,7 +32,13 @@ public class GameBallBehaviour : MonoBehaviour
     bool _bluePoint = false;
     bool _redPoint = false;
 
+    /// <summary>
+    /// Whether or not blue earned a point
+    /// </summary>
     public bool BluePoint { get => _bluePoint; }
+    /// <summary>
+    /// Whether or not red earned a point
+    /// </summary>
     public bool RedPoint { get => _redPoint; }
 
     /// <summary>
@@ -44,21 +50,19 @@ public class GameBallBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called when this actor is added to a scene
     /// </summary>
     private void Start()
     {
+        //Sends the ball towards a random direction at the start of a match
         float random = Random.Range(-70, 70);  
-
         _rigidbody.AddForce(new Vector3(_ballForce, 0, random));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log($"Velocity: {_rigidbody.velocity.x}, {_rigidbody.velocity.z}");
-    }
-
+    /// <summary>
+    /// Different collision calls for different game objects
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
