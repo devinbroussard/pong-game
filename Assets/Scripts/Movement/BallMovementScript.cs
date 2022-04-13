@@ -41,7 +41,7 @@ public class BallMovementScript : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        _rigidbody.AddForce(new Vector3(70, _ballForce, 0));
+        _rigidbody.AddForce(new Vector3(_ballForce, 0, 0));
     }
 
     // Update is called once per frame
@@ -54,12 +54,12 @@ public class BallMovementScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-          //  _rigidbody.velocity = _rigidbody.velocity * _wallBounceMultiplier;
+            _rigidbody.velocity = _rigidbody.velocity * _wallBounceMultiplier;
         }
 
         if (collision.gameObject.CompareTag("Paddle"))
         {
-           // _rigidbody.velocity = (_rigidbody.velocity.normalized * _defaultBounceSpeed);
+            _rigidbody.velocity = (_rigidbody.velocity.normalized * _defaultBounceSpeed);
         }
     }
 
