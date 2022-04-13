@@ -18,7 +18,6 @@ public class GameManagerBehaviour : MonoBehaviour
         if (!PlayerPrefs.HasKey("Blue Score"))
             PlayerPrefs.SetInt("Blue Score", 0);
 
-       // transform.rotation = Quaternion.Euler();
     }
 
     private void Update()

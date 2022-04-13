@@ -48,7 +48,7 @@ public class GameBallBehaviour : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        float random = Random.Range(1, 70);
+        float random = Random.Range(-70, 70);  
 
         _rigidbody.AddForce(new Vector3(_ballForce, 0, random));
     }

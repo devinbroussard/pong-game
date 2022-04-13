@@ -14,6 +14,6 @@ public class ScoreBehaviour : MonoBehaviour
     private void Update()
     {
         int score = PlayerPrefs.GetInt(_scoreName);
-        _scoreText.text = $"Blue Score: {score}";
+        _scoreText.text = $"{_scoreName}: {score}";
     }
 }

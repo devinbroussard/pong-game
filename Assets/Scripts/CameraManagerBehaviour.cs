@@ -25,7 +25,7 @@ public class CameraManagerBehaviour : MonoBehaviour
 
     private Vector3 _zoomScale = Vector3.one;
 
-    private void Start()
+    private void Awake()
     {
         _mainCamera = GetComponent<Camera>();
         _refRatio = _referenceAspectRatio.x / _referenceAspectRatio.y;
@@ -39,17 +39,25 @@ public class CameraManagerBehaviour : MonoBehaviour
         if (_referenceAspectRatio.x <= 0 || _referenceAspectRatio.y <= 0)
             return;
 
-        double ratio = _refRatio / _mainCamera.aspect;
-        ratio = Math.Round(ratio, 4);
+        float ratio = _refRatio / _mainCamera.aspect;
+        ratio = (float)Math.Round(ratio, 4);
 
-        if (ratio > 1)
+
+        Vector3 scaledPosition = Vector3.Scale(_startPos * ratio, _zoomScale);
+
+        
+
+
+        if (_mainCamera.aspect > 1)
         {
-            _mainCamera.transform.rotation = Quaternion.Euler(90, 90, 0);
+            transform.position = _startPos * ratio;
+            transform.rotation = Quaternion.Euler(90, 0, 0);
         }
-       
 
-        Vector3 scaledPosition = Vector3.Scale(_startPos * (float)ratio, _zoomScale);
-
-        transform.position = scaledPosition;
+        if (_mainCamera.aspect < 1)
+        {
+            transform.rotation = Quaternion.Euler(90, 90, 0);
+            transform.position = new Vector3(0, 19.6665f, 0);
+        }
     }
 }
