@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 
-public class BallMovementScript : MonoBehaviour
+public class GameBallBehaviour : MonoBehaviour
 {
     /// <summary>
     /// The ball's rigid body component
@@ -27,6 +27,12 @@ public class BallMovementScript : MonoBehaviour
     /// </summary>
     [SerializeField]
     float _defaultBounceSpeed = 100f;
+
+    bool _bluePoint = false;
+    bool _redPoint = false;
+
+    public bool BluePoint { get => _bluePoint; }
+    public bool RedPoint { get => _redPoint; }
 
     /// <summary>
     /// Awake is called when an instace of the script is created
@@ -53,14 +59,16 @@ public class BallMovementScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
-        {
-          //  _rigidbody.velocity = _rigidbody.velocity * _wallBounceMultiplier;
-        }
+            _rigidbody.velocity = _rigidbody.velocity * _wallBounceMultiplier;
 
-        if (collision.gameObject.CompareTag("Paddle"))
-        {
-           // _rigidbody.velocity = (_rigidbody.velocity.normalized * _defaultBounceSpeed);
-        }
+        else if (collision.gameObject.CompareTag("Paddle"))
+            _rigidbody.velocity = (_rigidbody.velocity.normalized * _defaultBounceSpeed);
+
+        else if (collision.gameObject.CompareTag("Blue Goal"))
+            _redPoint = true;
+
+        else if (collision.gameObject.CompareTag("Red Goal"))
+            _bluePoint = true;
     }
 
 }
